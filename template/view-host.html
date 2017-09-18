@@ -1,0 +1,186 @@
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  	<section class="content-header">
+      <h1>
+        Host Details
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+	    <div class="row">
+	        <div class="col-md-3 col-sm-6 col-xs-12">
+	          <div class="info-box">
+	            <span class="info-box-icon bg-aqua"><i class="fa fa-pie-chart"></i></span>
+
+	            <div class="info-box-content">
+	              <span class="info-box-text">Disk Spaces</span>
+	              <span class="info-box-number" id="disk_spaces"></span>
+	            </div>
+	            <!-- /.info-box-content -->
+	          </div>
+	          <!-- /.info-box -->
+	        </div>
+	        <!-- /.col -->
+	        <div class="col-md-3 col-sm-6 col-xs-12">
+	          <div class="info-box">
+	            <span class="info-box-icon bg-green"><i class="fa fa-database"></i></span>
+
+	            <div class="info-box-content">
+	              <span class="info-box-text">Databases</span>
+	              <span class="info-box-number" id="databases"></span>
+	            </div>
+	            <!-- /.info-box-content -->
+	          </div>
+	          <!-- /.info-box -->
+	        </div>
+	        <!-- /.col -->
+	        <div class="col-md-3 col-sm-6 col-xs-12">
+	          <div class="info-box">
+	            <span class="info-box-icon bg-yellow"><i class="fa fa-tachometer"></i></span>
+
+	            <div class="info-box-content">
+	              <span class="info-box-text">Band Width</span>
+	              <span class="info-box-number" id="band_width"></span>
+	            </div>
+	            <!-- /.info-box-content -->
+	          </div>
+	          <!-- /.info-box -->
+	        </div>
+	        <!-- /.col -->
+	        <div class="col-md-3 col-sm-6 col-xs-12">
+	          <div class="info-box">
+	            <span class="info-box-icon bg-red"><i class="fa fa-globe"></i></span>
+
+	            <div class="info-box-content">
+	              <span class="info-box-text">Addon Domains</span>
+	              <span class="info-box-number" id="addon_domains"></span>
+	            </div>
+	            <!-- /.info-box-content -->
+	          </div>
+	          <!-- /.info-box -->
+	        </div>
+	        <!-- /.col -->
+	     </div>
+	     <div class="row">
+        <div class="col-md-6">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <i class="fa fa-file-text-o"></i>
+
+              <h3 class="box-title">Main Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+	          <div class="table-responsive">
+	            <table class="table">
+	              <tbody><tr>
+	                <th style="width:25%">Host Name:</th>
+	                <td id="name"></td>
+	              </tr>
+	              <tr>
+	                <th>Username:</th>
+	                <td id="username"></td>
+	              </tr>
+	              <tr>
+	                <th>Password:</th>
+	                <td id="password"></td>
+	              </tr>
+	              <tr>
+	                <th>Purchases:</th>
+	                <td id="buy_it"></td>
+	              </tr>
+	              <tr>
+	                <th>Phone No:</th>
+	                <td id="phone"></td>
+	              </tr>
+	              <tr>
+	                <th>Url:</th>
+	                <td><a href="" target="_blank" id="url"></a></td>
+	              </tr>
+	              <tr>
+	                <th>Start Data:</th>
+	                <td id="start_date"></td>
+	              </tr>
+	              <tr>
+	                <th>End Date:</th>
+	                <td id="end_date"></td>
+	              </tr>
+	            </tbody></table>
+	          </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- ./col -->
+        <div class="col-md-6">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <i class="fa fa-globe"></i>
+
+              <h3 class="box-title">Add Domain</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <!-- Widget: user widget style 1 -->
+          		<div class="box box-widget widget-user-2">
+		            <div class="box-footer no-padding">
+		              <ul class="nav nav-stacked">
+		              </ul>
+		            </div>
+		         </div>
+          		<!-- /.widget-user -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- ./col -->
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+<script type="text/javascript" src="renderer.js"></script>
+<script type="text/javascript">
+$(function () {
+	var url = window.location.hash;
+	var id = url.substring(url.indexOf("?")+1);
+	hostViewMore(id, function(err, res){
+		if (err) {
+            console.log("ERROR : ", err);            
+        } else {
+        	var start_time = new Date(res[0].start_time);
+            var month = start_time.getMonth() + 1;
+            var start_time = (month.length > 1 ? month : "0" + month) + "/" + start_time.getDate() + "/" + start_time.getFullYear();
+            var end_time = new Date(res[0].end_time);
+            var month = end_time.getMonth() + 1;
+            var end_time = (month.length > 1 ? month : "0" + month) + "/" + end_time.getDate() + "/" + end_time.getFullYear();
+			$('#name').text(res[0].name);
+			$('#addon_domains').text(res[0].addon_domains);
+			$('#disk_spaces').text(res[0].disk_space);
+			$('#band_width').text(res[0].bandwidth);
+			$('#databases').text(res[0].databases);
+			$('#username').text(res[0].username);
+			var decrypted = CryptoJS.AES.decrypt(res[0].password, "1234");
+            $('#password').text(decrypted.toString(CryptoJS.enc.Utf8));
+			$('#url').text(res[0].url);
+			$('#phone').text(res[0].phone);
+			$('#buy_it').text(res[0].purchases);
+			$('#start_date').text(start_time);
+			$('#end_date').text(end_time);
+        }
+	});
+	domainsView(id, function(err, result){
+		if (err) {
+            console.log("ERROR : ", err);            
+        } else {
+			for (var i = 0; i < result.length; i++) {
+				$("ul.nav-stacked").append('<li><a href="#!/view-domain?'+result[i].id+'">'+result[i].name+'</a></li>');
+			}
+        }
+	});
+});
+</script>
+
