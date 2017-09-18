@@ -1,0 +1,17 @@
+{
+  "name": "password-app",
+  "version": "1.0.0",
+  "description": "Server details and password",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Kasun",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.6.2"
+  },
+  "dependencies": {
+    "mysql": "^2.13.0"
+  }
+}
