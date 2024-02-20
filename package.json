@@ -11,7 +11,8 @@
   ],
   "homepage": "https://github.com/kasungihan/password-app#readme",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "release": "standard-version"
   },
   "author": {
     "name": "Kasun Gihan",
