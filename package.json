@@ -1,0 +1,29 @@
+6{
+  "name": "password-app",
+  "version": "1.0.0",
+  "description": "username and password can ve stored in the password app",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasungihan/password-app.git"
+  },
+  "keywords": [
+    "password",
+    "username",
+    "store",
+    "url",
+    "app"
+  ],
+  "author": "Kasun Gihan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kasungihan/password-app/issues"
+  },
+  "homepage": "https://github.com/kasungihan/password-app#readme"
+}
