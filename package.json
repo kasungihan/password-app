@@ -1,7 +1,7 @@
-6{
+{
   "name": "password-app",
   "version": "1.0.0",
-  "description": "username and password can ve stored in the password app",
+  "description": "Your username and password can be stored in the password app",
   "main": "index.js",
   "directories": {
     "doc": "docs"
