@@ -14,20 +14,18 @@
         <h1>Password App</h1>
         <p>Store your username and password to access it as easy as you can.</p>
     </header>
-    <table border="1">
-        <thead>
-            <th>Title</th>
-            <th>URL</th>
-            <th>Username</th>
-            <th>Password</th>
-        </thead>
-        <tbody>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tbody>
-    </table>
+    <div>
+        <h2>Add</h2>
+        <input type="text" name="title" id="title" placeholder="title"></br>
+        <input type="text" name="url" id="url" placeholder="url"></br>
+        <input type="text" name="username" id="username" placeholder="username"></br>
+        <input type="text" name="password" id="password" placeholder="password"></br>
+        <button type="submit" id="formsubmit">Submit</button>
+    </div>
+    <div>
+        <h2>List</h2>
+        <div id="account"></div>
+    </div>
     <script src="app.js"></script>
 </body>
 
