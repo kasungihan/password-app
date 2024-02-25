@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Gmail",
+        "url": "https://mail.google.com/",
+        "username": "app@gmail.com",
+        "password": "123456"
+    },
+    {
+        "title": "Version",
+        "url": "https://gitlab.com/",
+        "username": "app@gmail.com",
+        "password": "1234"
+    }
+]
