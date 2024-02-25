@@ -2,7 +2,7 @@
 
 <h3 align="center">Your username, password, and other easily accessible information can be stored in the password app and accessed at any time.</h3>
 
-![Contributors](https://img.shields.io/github/contributors//kasungihan/password-app?style=plastic)
+![Contributors](https://img.shields.io/github/contributors/kasungihan/password-app?style=plastic)
 ![Forks](https://img.shields.io/github/forks/kasungihan/password-app)
 ![Stars](https://img.shields.io/github/stars/kasungihan/password-app)
 ![Licence](https://img.shields.io/github/license/kasungihan/password-app)
