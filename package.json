@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/kasungihan/password-app/issues"
   },
-  "homepage": "https://github.com/kasungihan/password-app#readme"
+  "homepage": "https://github.com/kasungihan/password-app#readme",
+  "devDependencies": {
+    "semantic-release": "^23.0.2"
+  }
 }

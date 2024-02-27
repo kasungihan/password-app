@@ -12,6 +12,11 @@
 
 Downloads an Electron Password App zip from GitHub.
 
+also password app can access you browser.
+
+1. install docker
+   ``
+
 **Note: Requires Node >= 4.0 to run.**
 
 ```shell
@@ -26,10 +31,9 @@ $
 
 ## Testing
 
-
 ## Credits
 
-![Verion Release](https://github.com/googleapis/release-please)
+[Verion Release](https://github.com/semantic-release/semantic-release)
 
 ## Supported OS
 
@@ -40,7 +44,6 @@ $
 ## License
 
 [GitHub License](https://github.com/kasungihan/password-app/LICENSE)
-
 
 ## Connect with me
 

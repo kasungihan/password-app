@@ -1,7 +1,21 @@
-FROM nginx:alpine
+FROM node:21-slim
 
-WORKDIR /html
+LABEL maintainer="Gihan"
 
-COPY . /usr/share/nginx/html
+ARG WWWGROUP
 
-CMD node app.js
+#RUN addgroup app && adduser -S -G app app
+
+#USER app
+
+WORKDIR /var/www/html
+
+#RUN chown -R app:app /var/www/html
+
+ENV TZ=UTC
+
+RUN echo 'Start application'
+
+RUN echo 'End application'
+
+CMD node dist/app.js
