@@ -1,0 +1,7 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"redjue.git-commit-plugin",
+		"esbenp.prettier-vscode"
+	]
+}
