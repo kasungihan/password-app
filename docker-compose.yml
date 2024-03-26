@@ -1,0 +1,11 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kasungihan/password-app
+    ports:
+      - 9000:3000
+    volumes:
+      - ./:/var/www/html
+    command: npm start

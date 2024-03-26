@@ -41,6 +41,10 @@ $
 - Linux
 - ISO
 
+## Release
+
+`docker run -d -p 3000:8000 kasungihan/password-app:latest`
+
 ## License
 
 [GitHub License](https://github.com/kasungihan/password-app/LICENSE)
