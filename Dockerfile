@@ -1,25 +1,30 @@
 FROM node:21-slim
 
-LABEL maintainer="Gihan"
+LABEL maintainer="Kasun Gihan <kasungihan.dev@gmail.com>"
 
-#RUN apk add --no-cache bash
+#RUN apt-get update 
 
-#RUN addgroup app && adduser -S -G app app
-
-#USER app
-
-WORKDIR /var/www/html
-
-#RUN chown -R app:app /var/www/html
-
-RUN node -v
+# && apt-get install passwd -y
 
 ENV TZ=UTC
 
-#RUN echo 'Start application'
+WORKDIR /var/www/html
 
-#RUN echo 'End application'
+#RUN addgroup app && adduser -S -G app app
 
-CMD node dist/test.js
+#RUN chown -R app:app /var/www/html
+
+#USER app
+
+COPY package*.json .
+COPY . .
+
+#RUN npm install
+
+#CMD node dist/test.js
 
 EXPOSE 8000
+
+#CMD [ "node" ]
+
+#RUN echo 'End application'
