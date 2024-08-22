@@ -1,20 +1,90 @@
+class BaseModel {
+	constructor(data) {
+		this.data = data; // This will hold the in-memory data
+	}
+
+	findById(id) {
+		return this.data.find((item) => item.id === id) || null;
+	}
+
+	findAll() {
+		if (!this.jsonFormat()) {
+			throw new Error("Invalid JSON format.");
+		}
+		return this.data;
+	}
+
+	create(newData) {
+		if (this.matchFillable(newData)) {
+			throw new Error("not identify the fillable field.");
+		}
+		const id = this.getLastId();
+		const timestamp = Date.now().toString();
+		const newItem = { id, ...newData, timestamp };
+		this.data.push(newItem);
+		this.save();
+		return newItem;
+	}
+
+	update(id, updatedData) {
+		const index = this.data.findIndex((item) => item.id === id);
+		if (index !== -1) {
+			this.data[index] = { ...this.data[index], ...updatedData };
+			this.save();
+			return this.data[index];
+		}
+		return null;
+	}
+
+	delete(id) {
+		const index = this.data.findIndex((item) => item.id === id);
+		if (index !== -1) {
+			const removedItem = this.data.splice(index, 1);
+			this.save();
+			return removedItem[0];
+		}
+		return null;
+	}
+
+	save() {
+		// This would save data back to the data.json file, which in a real app
+		// might involve updating localStorage or syncing with a backend server.
+		localStorage.setItem("data", JSON.stringify(this.data));
+	}
+
+	getLastId() {
+		return this.data.length + 1;
+	}
+
+	matchFillable(data) {
+		const keys = Object.keys(data);
+		return keys.every((key) => this.fillable.includes(key));
+	}
+
+	jsonFormat() {
+		return (
+			Array.isArray(this.data) &&
+			this.data.every((item) => typeof item === "object")
+		);
+	}
+}
+
+import jsonData from "./data.json";
+
+class Account extends BaseModel {
+	fillable = ["name", "email", "password"];
+
+	constructor(data) {
+		super(data);
+	}
+}
+
+let account = new Account(jsonData);
+
+console.log(account.findAll());
+
 class Bootstrap {
-	data = [
-		{
-			id: 1,
-			title: "Gmail",
-			url: "https://mail.google.com/",
-			username: "app@gmail.com",
-			password: "123456",
-		},
-		{
-			id: 2,
-			title: "Version",
-			url: "https://gitlab.com/",
-			username: "app@gmail.com",
-			password: "1234",
-		},
-	];
+	data = [];
 	constructor(app) {
 		this.app = app;
 
@@ -24,7 +94,6 @@ class Bootstrap {
 		if (this.app == null) {
 			throw new Error("Main app element not found.");
 		}
-		console.log(this.app);
 
 		this.app
 			.querySelector("#formSubmit")
@@ -34,7 +103,6 @@ class Bootstrap {
 	}
 
 	addItem(el) {
-		console.log(el);
 		const title = this.app.querySelector("#title");
 		const url = this.app.querySelector("#url");
 		const username = this.app.querySelector("#username");
@@ -59,8 +127,8 @@ class Bootstrap {
 		};
 
 		//this.validate(data);
-		this.data.push(data);
-		console.log(data);
+		account.create(data);
+		//this.data.push(data);
 		//const url = this.app.getElementById("url");
 		//reload
 		this.displayItem();
@@ -71,8 +139,9 @@ class Bootstrap {
 	removeItem() {}
 
 	displayItem() {
+		const data = account.findAll();
 		let template = "";
-		this.data.forEach((element) => {
+		data.forEach((element) => {
 			template += `<div>
         <div>Title: <b>${element.title}</b></div>
         <div>URL: <b>${element.url}</b></div>
@@ -99,11 +168,5 @@ class Bootstrap {
 }
 
 const app = document.getElementById("app");
-//console.log(app);
 const boot = new Bootstrap(app);
 boot.init();
-
-//const data = new AccountModel();
-//console.log("data");
-
-//const addForm = document.getElementById("formsubmit");
