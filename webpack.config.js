@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	entry: "./src/index.js", // Entry point for your application
@@ -18,8 +19,21 @@ module.exports = {
 					},
 				},
 			},
+			{
+				test: /\.scss$/,
+				use: [
+					"style-loader", // Injects styles into DOM
+					"css-loader", // Turns CSS into CommonJS
+					"sass-loader", // Compiles Sass to CSS
+				],
+			},
 		],
 	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: "./src/index.html", // Generates HTML from a template
+		}),
+	],
 	mode: "development", // Use 'production' for production builds
 	devServer: {
 		static: {

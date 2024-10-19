@@ -26,7 +26,7 @@ also password app can access you browser.
 
 1. Install App
 
-   - On **Debian** and **Ubuntu**
+   - On **Debian** and **Ubuntu** with Docker Installation
 
    ```
    sudo apt-get install docker-ce
@@ -34,7 +34,7 @@ also password app can access you browser.
    docker run -d -p 3000:3000 kasungihan/password-app:latest
    ```
 
-   Install without docker
+   Normal installation with any machine
 
    **Note: Requires Node >= 4.0 to run.**
 

@@ -1,3 +1,4 @@
+import "./assets/sass/style.scss";
 class BaseModel {
 	constructor(data) {
 		this.data = data; // This will hold the in-memory data
