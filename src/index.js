@@ -70,8 +70,9 @@ class BaseModel {
 	}
 }
 
+//if you user local storage or json file use factory design patter use
 import jsonData from "./data.json";
-
+import { allItem, getItem } from "./storage/browser";
 class Account extends BaseModel {
 	fillable = ["name", "email", "password"];
 
@@ -79,10 +80,9 @@ class Account extends BaseModel {
 		super(data);
 	}
 }
-
-let account = new Account(jsonData);
-
-console.log(account.findAll());
+console.log(getItem(1));
+let account = new Account(allItem());
+account.findAll();
 
 class Bootstrap {
 	data = [];

@@ -6,9 +6,9 @@ ENV TZ=UTC
 
 RUN apt-get update -y
 
-RUN apt-get install nginx -y
+#RUN apt-get install nginx -y
 
-WORKDIR /var/www/html
+WORKDIR /var/www/html/
 
 #RUN groupadd -r app && useradd -r -g app app && \
 #    chown -R app:app /var/www/html
@@ -27,12 +27,12 @@ RUN npm run build
 
 #FROM nginx:alpine AS nginx
 
-COPY nginx/nginx.conf /etc/nginx/conf.d/
+#COPY nginx/nginx.conf /etc/nginx/conf.d/
 
 #COPY  /var/www/html /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 3000
 
-#CMD ["node", "dist/app.js"]
+CMD ["npm", "start"]
 
-CMD ["nginx", "-g", "daemon off;"]
+#CMD ["nginx", "-g", "daemon off;"]
