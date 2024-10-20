@@ -53,10 +53,18 @@ also password app can access you browser.
    - Save the credential to securely store it.
 
 2. **Retrieving Credentials:**
+
    - Use the search feature to quickly find the desired credential.
    - Click on the credential to view or copy the information.
+
 3. **Editing/Deleting Credentials:**
+
    - Edit or delete stored credentials as needed through the app interface.
+
+4. **Import/Export Credentials**
+
+   - Export the all the data in .json format.
+   - Import data using same format
 
 ## Testing
 

@@ -27,6 +27,12 @@ class BaseModel {
 		return newItem;
 	}
 
+	createMany(newData) {
+		newData.forEach((item) => {
+			this.create(item);
+		});
+	}
+
 	update(id, updatedData) {
 		const index = this.data.findIndex((item) => item.id === id);
 		if (index !== -1) {
@@ -50,7 +56,7 @@ class BaseModel {
 	save() {
 		// This would save data back to the data.json file, which in a real app
 		// might involve updating localStorage or syncing with a backend server.
-		localStorage.setItem("data", JSON.stringify(this.data));
+		localStorage.setItem("passData", JSON.stringify(this.data));
 	}
 
 	getLastId() {
@@ -72,7 +78,7 @@ class BaseModel {
 
 //if you user local storage or json file use factory design patter use
 import jsonData from "./data.json";
-import { allItem, getItem } from "./storage/browser";
+import { allItem, getItem, storeItem } from "./storage/browser";
 class Account extends BaseModel {
 	fillable = ["name", "email", "password"];
 
@@ -80,7 +86,7 @@ class Account extends BaseModel {
 		super(data);
 	}
 }
-console.log(getItem(1));
+//console.log(getItem(1));
 let account = new Account(allItem());
 account.findAll();
 
@@ -96,11 +102,23 @@ class Bootstrap {
 			throw new Error("Main app element not found.");
 		}
 
+		this.mounted();
+	}
+
+	mounted() {
 		this.app
 			.querySelector("#formSubmit")
 			.addEventListener("click", this.addItem.bind(this));
 
 		this.displayItem();
+
+		this.app
+			.querySelector("#backupDownload")
+			.addEventListener("click", this.exportItem.bind(this));
+
+		this.app
+			.querySelector("#backupRestore")
+			.addEventListener("change", this.importItem);
 	}
 
 	addItem(el) {
@@ -110,6 +128,7 @@ class Bootstrap {
 		const password = this.app.querySelector("#password");
 
 		if (title.value == "") {
+			console.log(title);
 			alert("Title is required.");
 		} else if (url.value == "") {
 			alert("URL is required.");
@@ -152,6 +171,35 @@ class Bootstrap {
 		});
 		const table = this.app.querySelector("#table");
 		table.innerHTML += template;
+	}
+
+	exportItem(el) {
+		const jsonData = JSON.stringify(account.findAll(), null, 2);
+
+		const blob = new Blob([jsonData], { type: "application/json" });
+
+		const link = document.createElement("a");
+
+		link.href = URL.createObjectURL(blob);
+
+		link.download = "data.json";
+
+		document.body.appendChild(link);
+		link.click();
+
+		document.body.removeChild(link);
+	}
+
+	importItem(event) {
+		const file = event.target.files[0];
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = function (e) {
+				const jsonData = JSON.parse(e.target.result);
+				account.createMany(jsonData);
+			};
+			reader.readAsText(file);
+		}
 	}
 
 	getItem() {

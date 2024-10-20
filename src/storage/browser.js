@@ -1,4 +1,4 @@
-export function store(items) {
+export function storeItem(items) {
 	let data = localStorage.getItem("passData");
 	data.push(items);
 	localStorage.setItem("passData", data);
@@ -23,8 +23,6 @@ export function getItem(id) {
 
 export function allItem() {
 	//.env get name if exist keyword or set empty array
-	// data backup
-	// data restore
 	let data = [];
 	if (!localStorage.getItem("passData")) {
 		localStorage.setItem("passData", data);
