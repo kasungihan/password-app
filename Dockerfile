@@ -2,29 +2,37 @@ FROM node:21-slim
 
 LABEL maintainer="Kasun Gihan <kasungihan.dev@gmail.com>"
 
-#RUN apt-get update 
-
-# && apt-get install passwd -y
-
 ENV TZ=UTC
 
-WORKDIR /var/www/html
+RUN apt-get update -y
 
-#RUN addgroup app && adduser -S -G app app
+#RUN apt-get install nginx -y
 
-#RUN chown -R app:app /var/www/html
+WORKDIR /var/www/html/
+
+#RUN groupadd -r app && useradd -r -g app app && \
+#    chown -R app:app /var/www/html
 
 #USER app
 
 COPY package*.json .
+
+COPY .babelrc .
+
+RUN npm install
+
 COPY . .
 
-#RUN npm install
+RUN npm run build
 
-#CMD node dist/test.js
+#FROM nginx:alpine AS nginx
 
-EXPOSE 8000
+#COPY nginx/nginx.conf /etc/nginx/conf.d/
 
-#CMD [ "node" ]
+#COPY  /var/www/html /usr/share/nginx/html
 
-#RUN echo 'End application'
+EXPOSE 3000
+
+CMD ["npm", "start"]
+
+#CMD ["nginx", "-g", "daemon off;"]

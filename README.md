@@ -1,12 +1,22 @@
 # Password App
 
-<h3 align="center">Your username, password, and other easily accessible information can be stored in the password app and accessed at any time.</h3>
+<h3 align="center">A lightweight and secure password management app designed to safely store and manage your passwords.</h3>
+
+## Requirement
+
+The application designed to help users store and manage their credentials locally. Many users struggle to keep their passwords organized, often relying on insecure methods like text editors. This app provides a safe and convenient way to save and access usernames, passwords, and other sensitive information whenever needed.
 
 ![Contributors](https://img.shields.io/github/contributors/kasungihan/password-app?style=plastic)
 ![Forks](https://img.shields.io/github/forks/kasungihan/password-app)
 ![Stars](https://img.shields.io/github/stars/kasungihan/password-app)
-![Licence](https://img.shields.io/github/license/kasungihan/password-app)
+![License](https://img.shields.io/github/license/kasungihan/password-app)
 ![Issues](https://img.shields.io/github/issues/kasungihan/password-app)
+
+## Features
+
+- Generate Password
+- Save Password encrypted method
+- Easily retrieve your credentials with a simple search.
 
 ## Installation
 
@@ -14,22 +24,51 @@ Downloads an Electron Password App zip from GitHub.
 
 also password app can access you browser.
 
-1. install docker
-   ``
+1. Install App
 
-**Note: Requires Node >= 4.0 to run.**
+   - On **Debian** and **Ubuntu** with Docker Installation
 
-```shell
-$ npm install --global
-$ npm install
-$
-```
+   ```
+   sudo apt-get install docker-ce
+
+   docker run -d -p 3000:3000 kasungihan/password-app:latest
+   ```
+
+   Normal installation with any machine
+
+   **Note: Requires Node >= 4.0 to run.**
+
+   ```shell
+   $ npm install --global
+   $ npm install
+   $ npm start
+   ```
 
 ## Usage
 
-`npm start`
+1. **Adding Credentials:**
+
+   - Open the app and click on "Add New Account."
+   - Enter the name of account, url, username, password, and any other relevant information.
+   - Save the credential to securely store it.
+
+2. **Retrieving Credentials:**
+
+   - Use the search feature to quickly find the desired credential.
+   - Click on the credential to view or copy the information.
+
+3. **Editing/Deleting Credentials:**
+
+   - Edit or delete stored credentials as needed through the app interface.
+
+4. **Import/Export Credentials**
+
+   - Export the all the data in .json format.
+   - Import data using same format
 
 ## Testing
+
+`npm test`
 
 ## Credits
 
@@ -40,14 +79,20 @@ $
 - Windows 10
 - Linux
 - ISO
+- Web
 
-## Release
+## Contribution
 
-`docker run -d -p 3000:8000 kasungihan/password-app:latest`
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Submit a pull request with a detailed description of your changes.
 
 ## License
 
-[GitHub License](https://github.com/kasungihan/password-app/LICENSE)
+This project is licensed under the MIT License - see the [License](https://github.com/kasungihan/password-app/LICENSE) file for details.
 
 ## Connect with me
 
